@@ -24,7 +24,7 @@ export fn draw() {
 ### compile
 
 ```sh
-whiskey compile test.whi
+whistle compile test.whi -o test.wasm
 ```
 
 ### run
@@ -36,5 +36,5 @@ deno run -A --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts run test.w
 ### build
 
 ```sh
-deno run -A --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts compile test.wasm -o myApp.exe
+deno run -A --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts build test.wasm -o myApp.exe
 ```

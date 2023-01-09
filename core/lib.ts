@@ -1,11 +1,8 @@
 import {
   CanvasRenderingContext2D,
-  getPrimaryMonitor,
   WindowCanvas,
 } from "https://raw.githubusercontent.com/deno-windowing/dwm/main/ext/canvas.ts";
-import { WhistleStorage } from "https://raw.githubusercontent.com/whistle-lang/runtime/main/deno/mod.ts";
-
-const monitor = getPrimaryMonitor();
+// import { WhistleStorage } from "https://raw.githubusercontent.com/whistle-lang/runtime/main/deno/mod.ts";
 
 class Storage {
   static background = "#ffffff";
@@ -16,6 +13,10 @@ class Storage {
 export let canvas: WindowCanvas | undefined;
 export let ctx: CanvasRenderingContext2D | undefined;
 
+export const toHex = (d: number) =>
+  "#000000".substring(0, 7 - Number(d).toString(16).length) +
+  Number(d).toString(16);
+
 function createCanvas(width: number, height: number) {
   canvas = new WindowCanvas({
     title: "p5",
@@ -23,10 +24,6 @@ function createCanvas(width: number, height: number) {
     height,
     resizable: false,
   });
-  canvas.window.position = {
-    x: monitor.workArea.width - 500,
-    y: monitor.workArea.height - 500,
-  };
   ctx = canvas.ctx;
 }
 
@@ -52,6 +49,29 @@ function circle(x: number, y: number, diameter: number) {
   ctx!.arc(x, y, diameter / 2, 0, 2 * Math.PI, false);
   ctx!.fill();
   ctx!.stroke();
+  ctx!.closePath();
+}
+
+function ellipse(
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  rotation: number,
+) {
+  ctx!.beginPath();
+  ctx!.ellipse(x, y, width, height, rotation, 0, 2 * Math.PI, false);
+  ctx!.fill();
+  ctx!.stroke();
+  ctx!.closePath();
+}
+
+function arc(x: number, y: number, radius: number, start: number, stop: number) {
+  ctx!.beginPath();
+  ctx!.arc(x, y, radius, start, stop, false);
+  ctx!.fill();
+  ctx!.stroke();
+  ctx!.closePath();
 }
 
 const randomStateProp = "_lcg_random_state";
@@ -127,31 +147,32 @@ function randomGaussian(mean: number, sd = 1) {
   return y1 * sd + m;
 }
 
-function fill(color: string) {
-  Storage.fill = color;
+function fill(color: number) {
+  Storage.fill = toHex(color);
 }
 
-function stroke(color: string) {
-  Storage.stroke = color;
+function stroke(color: number) {
+  Storage.stroke = toHex(color);
 }
+
+function background(color: number) {
+  Storage.background = toHex(color);
+}
+
 export default function plugin(
-  address: string,
+  _address: string,
 ): Record<string, WebAssembly.ImportValue> {
   return {
     createCanvas,
     rect,
     square,
     circle,
+    ellipse,
+    arc,
     clear,
-    fill(color: number) {
-      fill(WhistleStorage.string(address, color));
-    },
-    stroke(color: number) {
-      stroke(WhistleStorage.string(address, color));
-    },
-    background(color: number) {
-      Storage.background = WhistleStorage.string(address, color);
-    },
+    fill,
+    stroke,
+    background,
     randomSeed,
     random,
     randomGaussian,
