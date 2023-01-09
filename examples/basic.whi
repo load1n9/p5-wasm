@@ -1,0 +1,12 @@
+import "./p5.whi"
+
+export fn setup() {
+    createCanvas(500, 500)
+}
+
+export fn draw() {
+    clear()
+    fill("#0000ff")
+    rect(30, 40, 40, 40)
+    circle(160, 60, 30)
+}
