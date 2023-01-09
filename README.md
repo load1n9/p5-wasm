@@ -7,7 +7,7 @@ p5 like library for wasm & compiles using deno
 test.whi
 
 ```rs
-import "https://raw.githubusercontent.com/load1n9/p5-whistle/main/p5.whi"
+import "https://raw.githubusercontent.com/load1n9/p5-whistle/main/p5_whi/p5.whi"
 
 export fn setup() {
     createCanvas(500, 500)
