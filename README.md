@@ -7,7 +7,7 @@ p5 like library for wasm & compiles using deno
 test.whi
 
 ```rs
-import "https://deno.land/x/p5wasm@0.1.0-alpha/p5_whi/p5.whi"
+import "https://deno.land/x/p5wasm/p5_whi/p5.whi"
 
 export fn setup() {
     createCanvas(500, 500)
@@ -30,11 +30,11 @@ whistle compile test.whi -o test.wasm
 ### run
 
 ```sh
-deno run -Ar --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts run test.wasm
+deno run -Ar --unstable https://deno.land/x/p5wasm/main.ts run test.wasm
 ```
 
 ### build
 
 ```sh
-deno run -Ar --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts build test.wasm -o myApp.exe
+deno run -Ar --unstable https://deno.land/x/p5wasm/main.ts build test.wasm -o myApp.exe
 ```
