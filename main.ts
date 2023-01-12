@@ -1,6 +1,6 @@
 import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
 import { main } from "./core/runtime.ts";
-import Instance from "https://raw.githubusercontent.com/deno-windowing/pack/main/src/compile.ts";
+import Instance from "https://raw.githubusercontent.com/deno-windowing/wpack/main/src/platform.ts";
 import { encode } from "https://deno.land/std@0.149.0/encoding/base64.ts";
 
 const RUNTIME_URL =

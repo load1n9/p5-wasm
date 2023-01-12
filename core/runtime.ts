@@ -2,7 +2,7 @@ import { WhistleProgram } from "https://raw.githubusercontent.com/whistle-lang/r
 import plugin, { canvas, defaultCanvas } from "./lib.ts";
 import {
   mainloop,
-} from "https://raw.githubusercontent.com/deno-windowing/dwm/main/ext/canvas.ts";
+} from "https://deno.land/x/dwm@0.2.1/ext/canvas.ts";
 export async function main(module: WebAssembly.Module) {
   const program = new WhistleProgram(module, {
     wasi: {

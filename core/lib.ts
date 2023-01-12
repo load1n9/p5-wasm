@@ -1,9 +1,8 @@
+// import { WhistleStorage } from "https://raw.githubusercontent.com/whistle-lang/runtime/main/deno/mod.ts";
 import {
   CanvasRenderingContext2D,
   WindowCanvas,
-} from "https://raw.githubusercontent.com/deno-windowing/dwm/main/ext/canvas.ts";
-// import { WhistleStorage } from "https://raw.githubusercontent.com/whistle-lang/runtime/main/deno/mod.ts";
-
+} from "https://deno.land/x/dwm@0.2.1/ext/canvas.ts";
 class Storage {
   static background = "#ffffff";
   static fill = "#000000";
@@ -66,7 +65,13 @@ function ellipse(
   ctx!.closePath();
 }
 
-function arc(x: number, y: number, radius: number, start: number, stop: number) {
+function arc(
+  x: number,
+  y: number,
+  radius: number,
+  start: number,
+  stop: number,
+) {
   ctx!.beginPath();
   ctx!.arc(x, y, radius, start, stop, false);
   ctx!.fill();

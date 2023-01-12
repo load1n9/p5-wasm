@@ -30,11 +30,11 @@ whistle compile test.whi -o test.wasm
 ### run
 
 ```sh
-deno run -A --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts run test.wasm
+deno run -Ar --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts run test.wasm
 ```
 
 ### build
 
 ```sh
-deno run -A --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts build test.wasm -o myApp.exe
+deno run -Ar --unstable https://deno.land/x/p5wasm@0.1.0-alpha/main.ts build test.wasm -o myApp.exe
 ```
